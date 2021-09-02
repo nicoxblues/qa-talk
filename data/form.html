@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style type='text/css'>
+        body {<!--from  w ww .  ja va  2s .  c  o m-->
+          background-color: #858585;
+        }
+        
+        form {
+          padding: 40px;
+          background-color: white;
+          margin: auto;
+          margin-top: 20px;
+          width: 400px;
+          font-size: 18px;
+          border-radius: 10px;
+          box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .4);
+          min-height: 100px;
+        }
+        
+        input[type=email], input[type=submit] {
+          display: block;
+          font-size: 18px;
+          margin-bottom: 15px;
+        }
+        
+        input[type=email] {
+          width: 400px;
+          padding: 4px;
+          float: right;
+        }h
+        
+        input[type=submit] {
+          padding: 8px;
+          width: 100px;
+          float: right;
+        }
+        </style>
+
+</head>
+<body>
+    <h3 style="color:red">Juguemos a romperlo el fomulario</h3>
+
+
+    <form onsubmit="return check(this);" action="/">
+        <label for="fname">Nombre:</label><br>
+        <input type="text" id="fname" name="fname" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required><br>
+        <label for="dni">Un numero random:</label><br>
+        <input type="text" onkeypress="return onlyNumber(event)" id="dni" name="dni" required ><br><br>
+        <input  type="submit"  value="Submit">
+    </form>
+
+
+</body>
+
+<script>
+    function onlyNumber(e) {
+        var key = window.Event ? e.which : e.keyCode;
+        return ((key >= 48 && key <= 57) || (key == 8))
+    }
+
+    function check(e) {
+        if (e.checkValidity()){
+            var numberPattern = /^[0-9]*$/;
+            let valueDni = document.getElementById("dni").value;
+            if (valueDni && !valueDni.match(numberPattern)){
+                alert("LO ROMPISTE !! se te debitaron todos tus ahorros por tramposo")
+            }else{
+                alert("se proceso con exito")
+            }
+            return false
+        }
+        return e.checkValidity()
+    }
+</script>
+
+</html>
